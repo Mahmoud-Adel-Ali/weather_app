@@ -8,10 +8,12 @@ void main() {
      create: (context) {
         return WeatherProvider();
       },
-    child: WeatherApp()));
+    child: const WeatherApp()));
 }
 
 class WeatherApp extends StatelessWidget {
+  const WeatherApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
