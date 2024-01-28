@@ -6,10 +6,10 @@ import 'package:weather_app/services/weather_service.dart';
 
 void main() {
   runApp(BlocProvider(
-     create: (context) {
+      create: (context) {
         return WeatherCubit(WeatherService());
       },
-    child: const WeatherApp()));
+      child: const WeatherApp()));
 }
 
 class WeatherApp extends StatelessWidget {
@@ -18,8 +18,14 @@ class WeatherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-      // primarySwatch: Provider.of<WeatherProvider>(context).weatherData == null ?  Colors.blue : Provider.of<WeatherProvider>(context).weatherData!.getThemeColor()  ,
+        primarySwatch:
+            BlocProvider.of<WeatherCubit>(context).weatherModel == null
+                ? Colors.blueGrey
+                : BlocProvider.of<WeatherCubit>(context)
+                    .weatherModel!
+                    .getThemeColor(),
       ),
       home: HomePage(),
     );
