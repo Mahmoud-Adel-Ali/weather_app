@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.orange,
             actions: [
               IconButton(
                 onPressed: () {
@@ -31,8 +32,8 @@ class HomePage extends StatelessWidget {
             ],
             title: const Text('Weather App'),
           ),
-          body:
-              BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
+          body: BlocBuilder<WeatherCubit, WeatherState>(
+              builder: (context, state) {
             if (state is WeatherLoading) {
               return const Center(
                 child: CircularProgressIndicator(
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
                 ),
               );
             } else if (state is WeatherSuccess) {
-              weatherData = BlocProvider.of<WeatherCubit>(context).weatherModel;
+              weatherData = state.weatherModel;
               return successBody(context);
             } else if (state is WeatherFailure) {
               return defultBody();
